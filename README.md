@@ -214,3 +214,18 @@ function obtenerUsuario(id) {
 const usuario = obtenerUsuario(1);
 console.log(usuario);
 ```
+
+
+## Ejercicio 6
+
+Tenemos un cliente que tiene una página donde se pueden crear listados de canciones.
+
+El cliente ha creado la maquetación y la lógica de los ofrmularios e interacciones con botones para ordenar, marcar como favorito y borrar. Sin embargo, necesita nuestra ayuda para manejar el estado o lógica de esta web.
+
+Para ello nos pide que creemos un estado en una función(usando cierres) que tenemos que exportar y se va a encargar de gestionar las funcionalidades de la app.
+
+Nuestro cliente nos dio el archivo que tenemos que modificar para hacer funcionar su web. **Únicamente es necesario modificar este archivo**. Este se encuentra en la carpeta **playlist/js/playlist.js**.
+
+Cada playlist tiene un nombre y un listado de canciones. Las canciones tienen título, nombre del artista, género musical, duración en segundos y si es tu favorita.
+
+En un comentario estaría la estructura de datos.
