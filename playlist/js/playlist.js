@@ -47,7 +47,8 @@ const musicCatalog = () => {
    * @param {string} playlistName - The name of the playlist to remove.
    */
     const removePlaylist = (playlistName) => {
-      playlists = playlists.filter(({ name }) => name !== playlistName); //playlist => playlist.name !== playlistName
+      playlists = playlists.filter(({ name }) => name !== playlistName); 
+      //playlist => playlist.name !== playlistName
     };
 
   /**
@@ -56,7 +57,23 @@ const musicCatalog = () => {
    * @param {{ title: string, artist: string, genre: string, duration: number }} song - The song to add to the playlist.
    * @throws {Error} If the playlist is not found.
    */
-  const addSongToPlaylist = (playlistName, song) => {};
+  const addSongToPlaylist = (playlistName, song) => {
+    const playlist = playlists.find(({ name }) => name === playlistName);
+    if (!playlist) {
+      throw new Error("Playlist not found");
+    }
+
+    playlists = playlists.map(playlist => {
+      if (playlist.name === playlistName) {
+        const newSongs = [...playlist.songs, {...song, favourite: false}];
+        return {
+          ...playlist,
+          songs: newSongs
+        }
+      }
+      return playlist;
+    });
+  };
 
   /**
    * Removes a song from a specific playlist.
@@ -82,7 +99,12 @@ const musicCatalog = () => {
    */
   const sortSongs = (playlistName, criterion) => {};
 
+  //Pruebas
+  /* const prueba3 = addSongToPlaylist("prueba3", "holi");
+  console.log(prueba3); */
+
   return { createPlaylist, addSongToPlaylist, removeSongFromPlaylist, sortSongs, getAllPlaylists, removePlaylist, favoriteSong };
 };
+
 
 export default musicCatalog;
