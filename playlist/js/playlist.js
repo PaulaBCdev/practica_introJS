@@ -65,7 +65,7 @@ const musicCatalog = () => {
 
     playlists = playlists.map(playlist => {
       if (playlist.name === playlistName) {
-        const newSongs = [...playlist.songs, {...song, favourite: false}];
+        const newSongs = [...playlist.songs, {...song, favorite: false}];
         return {
           ...playlist,
           songs: newSongs
@@ -109,7 +109,26 @@ const musicCatalog = () => {
    * @param {string} playlistName - The name of the playlist containing the song.
    * @param {string} title - The title of the song to mark as a favorite.
    */
-  const favoriteSong = (playlistName, title) => {};
+  const favoriteSong = (playlistName, title) => {
+    playlists = playlists.map(playlist => {
+      if (playlist.name === playlistName) {
+        const newSongs = playlist.songs.map(song => {
+          if (song.title === title) {
+            return {
+              ...song,
+              favorite: !song.favorite,
+            }
+          }
+          return song
+        })
+        return {
+          ...playlist,
+          songs: newSongs
+        }
+      }
+      return playlist;
+    });
+  }; // Cuando le doy a incluir en favoritos no me aparece nada para poder borrar el favorito. Sin embargo he preparado la función para que se pueda quitar un favorito para cuando haya botón que permita quitar canciones de favoritos
 
   /**
    * Sorts songs in a specific playlist by a given criterion (title, artist, or duration).
