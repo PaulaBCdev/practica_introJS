@@ -137,11 +137,71 @@ const musicCatalog = () => {
    * @returns {Song[]} The list of sorted songs.
    * @throws {Error} If the playlist is not found or the criterion is invalid.
    */
-  const sortSongs = (playlistName, criterion) => {};
+  const sortSongs = (playlistName, criterion) => {
+    const playlist = playlists.find(({ name }) => name === playlistName);
+    if (!playlist) {
+      throw new Error("Playlist not found");
+    }
 
-  //Pruebas
-  /* const prueba3 = addSongToPlaylist("prueba3", "holi");
-  console.log(prueba3); */
+    playlists = playlists.map(playlist => {
+      if (playlist.name === playlistName) {
+        let songs = []
+        switch (criterion) {
+          case "title":
+            songs = [...playlist.songs].toSorted((a, b) => {
+              const titleA = a.title.toLowerCase();
+              const titleB = b.title.toLowerCase();
+              if (titleA < titleB) {
+                return -1;
+              }
+              if (titleA > titleB) {
+                return 1;
+              }
+              return 0;
+            });
+            return {
+              ...playlist,
+              songs
+            }
+          case "artist":
+            songs = [...playlist.songs].toSorted((a, b) => {
+              const artistA = a.artist.toLowerCase();
+              const artistB = b.artist.toLowerCase();
+              if (artistA < artistB) {
+                return -1;
+              }
+              if (artistA > artistB) {
+                return 1;
+              }
+              return 0;
+            });
+            return {
+              ...playlist,
+              songs
+            }
+          case "duration":
+            songs = [...playlist.songs].toSorted((a, b) => {
+              if (a.duration < b.duration) {
+                return -1;
+              }
+              if (a.duration > b.duration) {
+                return 1;
+              }
+              return 0;
+            });
+            return {
+              ...playlist,
+              songs
+            }
+          default:
+            throw new Error ("Criterion not found");
+        }
+      }
+      return playlist;
+    });
+    
+  };
+
 
   return { createPlaylist, addSongToPlaylist, removeSongFromPlaylist, sortSongs, getAllPlaylists, removePlaylist, favoriteSong };
 };
