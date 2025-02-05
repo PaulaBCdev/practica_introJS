@@ -137,15 +137,52 @@ const musicCatalog = () => {
    * @returns {Song[]} The list of sorted songs.
    * @throws {Error} If the playlist is not found or the criterion is invalid.
    */
+
+  const sortBy = (songs, criterion, isText) => {
+    const sortedSongs = [...songs].toSorted((a, b) => {
+      let critA = a[criterion].toLowerCase();
+      let critB = b[criterion].toLowerCase();
+      if (isText === false) {
+        critA = a[criterion];
+        critB = b[criterion];
+      }
+
+      if (critA < critB) {
+        return -1;
+      }
+      else if (critA > critB) {
+        return 1;
+      }
+      return 0;
+      }
+    )
+    return sortedSongs;
+  };
+
   const sortSongs = (playlistName, criterion) => {
     const playlist = playlists.find(({ name }) => name === playlistName);
     if (!playlist) {
       throw new Error("Playlist not found");
     }
 
+    const validCriterion = ["title", "artist", "duration"];
+    if (!validCriterion.includes(criterion)) {
+      throw new Error("Criterion invalid");
+    }
+
     playlists = playlists.map(playlist => {
       if (playlist.name === playlistName) {
-        let songs = []
+        return {
+          ...playlist,
+          songs: sortBy(playlist.songs, criterion, criterion === "duration" ? false : true)
+        };
+      }
+    });
+
+    /* Version original sin refactorizar
+    playlists = playlists.map(playlist => {
+      if (playlist.name === playlistName) {
+        let songs = [];
         switch (criterion) {
           case "title":
             songs = [...playlist.songs].toSorted((a, b) => {
@@ -198,11 +235,9 @@ const musicCatalog = () => {
         }
       }
       return playlist;
-    });
+    }); */
     
   };
-
-
   return { createPlaylist, addSongToPlaylist, removeSongFromPlaylist, sortSongs, getAllPlaylists, removePlaylist, favoriteSong };
 };
 
