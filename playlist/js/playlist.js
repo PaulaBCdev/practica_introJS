@@ -157,7 +157,7 @@ const musicCatalog = () => {
       }
     )
     return sortedSongs;
-  };
+  }; // Esto ha costado mucho, mucho
 
   const sortSongs = (playlistName, criterion) => {
     const playlist = playlists.find(({ name }) => name === playlistName);

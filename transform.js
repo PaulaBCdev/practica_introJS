@@ -1,21 +1,3 @@
-/*
-Nuestro cliente tiene un array de datos y nos ha pedido que saquemos la siguiente información:
- - El listado de los desarrolladores que tengan como habilidad "JavaScript"
-       [
-            {
-                id: 1,
-                nombre: "Juan",
-                habilidades: ["JavaScript", "HTML", "CSS"],
-                proyectos: [
-                    { id: 1, nombre: "Proyecto 1" },
-                    { id: 2, nombre: "Proyecto 2" }
-                ]
-            }
-        ]
-
- - El listado de los proyectos en el que sus desarrolladores trabajan
-    ["Proyecto 1", "Proyecto 2", "Proyecto 3", "Proyecto 4", "Proyecto 5", "Proyecto 6"]
-*/
 
 const datos = [
     {

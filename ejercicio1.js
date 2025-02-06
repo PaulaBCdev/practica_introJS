@@ -12,7 +12,7 @@ const usuario = {
             name: "React", 
             date: "2025-05-12"},
     ],
-    busquedaActiva: true
+    busquedaActiva: true,
 };
 
 console.log(usuario.modulos[2].date);

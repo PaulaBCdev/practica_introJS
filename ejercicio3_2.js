@@ -12,15 +12,15 @@ const separator = (number) => {
     return separatedNumbers
 }
 
-separator(input); // "1-0"
-console.log(separator(input));
+separator(input); 
+/* console.log(separator(input)); */
 
 
 const secondInput = 1;
-separator(secondInput); // "1"
-console.log(separator(secondInput));
+separator(secondInput);
+/* console.log(separator(secondInput)); */
 
 
 const thirdInput = 11234;
-separator(thirdInput); // "1-1-2-3-4"
-console.log(separator(thirdInput));
+separator(thirdInput); 
+/* console.log(separator(thirdInput)); */
