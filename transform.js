@@ -39,11 +39,14 @@ console.log(desarrolladoresJS);
 
 
 const obtenerProyectos = (list) => {
-    const nombresProyectos = list.map(({proyectos}) => 
+    /* const nombresProyectos = list.map(({proyectos}) => 
         proyectos.map(({nombre}) => nombre)
-    ).join(",").split(",");
+    ).join(",").split(","); */
+
+    const nombresProyectos = list.flatMap(({ proyectos }) => proyectos.flatMap(({ nombre }) => nombre));
 
     return(nombresProyectos)
 }
 const nombresProyectos = obtenerProyectos(datos);
 console.log(nombresProyectos)
+

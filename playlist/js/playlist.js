@@ -140,11 +140,14 @@ const musicCatalog = () => {
 
   const sortBy = (songs, criterion, isText) => {
     const sortedSongs = [...songs].toSorted((a, b) => {
-      let critA = a[criterion].toLowerCase();
-      let critB = b[criterion].toLowerCase();
-      if (isText === false) {
+      let critA = a[criterion];
+      let critB = b[criterion];
+      if (!isText) {
         critA = a[criterion];
         critB = b[criterion];
+      } else {
+        critA = critA.toLowerCase();
+        critB = critB.toLowerCase();
       }
 
       if (critA < critB) {

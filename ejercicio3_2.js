@@ -2,12 +2,7 @@ const input = 10;
 
 const separator = (number) => {
     const numString = number.toString();
-    
-    const numList = [];
-    for (const num of numString) {
-        numList.push(num)
-    };
-    const separatedNumbers = numList.join("-");
+    const separatedNumbers = numString.split("").join("-");
 
     return separatedNumbers
 }
